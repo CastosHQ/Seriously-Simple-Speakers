@@ -13,15 +13,16 @@ Add speakers to your Seriously Simple Podcasting episodes.
 
 > This plugin is an add-on for [Seriously Simple Podcasting](https://www.seriouslysimplepodcasting.com/) and requires at least **v1.14** of Seriously Simple Podcasting in order to work.
 
-Does your podcast have numerous different speakers? Or maybe a different guest each week? Perhaps you have unique hosts for each episode? If any of those options describe your podcast then this is the add-on for you!
+Does your podcast have a number of different speakers? Or maybe a different guest each week? Perhaps you have unique hosts for each episode? If any of those options describe your podcast then this is the add-on for you!
 
-Seriously Simple Speakers allws you to add one or more speakers to each of your episodes - the speakers are setup as a new taxonomy, making them easily searchable as well as giving them their own archive pages out of the box.
+Seriously Simple Speakers allows you to add one or more speakers to each of your episodes - the speakers are setup as a new taxonomy (not users), making them easily searchable as well as giving them their own archive pages out of the box.
 
 **Primary Features**
 
 - Allows you to add any number of speakers to your podcast episodes
 - Adds a new `speaker` taxonomy to all podcast post types
 - Displays speakers in the episode details with links to speaker archives
+- Add speakers *without* adding a new user for each speaker
 
 **How to contribute**
 
@@ -37,7 +38,10 @@ Installing "Seriously Simple Speakers" can be done either by searching for "Seri
 
 == Screenshots ==
 
-1. screenshot-1.png
+1. The Speakers taxonomy page in the admin menu
+2. Speakers are managed just like any other taxonomy
+3. Speakers are added to episodes in the same way as any other taxonomy
+4. Speakers are displayed in the episode details area by default (see the FAQs for how to disable this display)
 
 == Frequently Asked Questions ==
 
