@@ -1,6 +1,6 @@
 <?php
 /*
- * Plugin Name: seriously Simple Speakers
+ * Plugin Name: Seriously Simple Speakers
  * Version: 1.0
  * Plugin URI: https://wordpress.org/plugins/seriously-simple-speakers
  * Description: Add speakers to your Seriously Simple Podcasting episodes.
