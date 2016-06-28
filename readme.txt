@@ -1,6 +1,6 @@
 === Seriously Simple Speakers ===
 Contributors: hlashbrooke
-Tags: seriously simple podcasting, speakers, guests, podcast, podcasting, ssp, free, add-ons, extensions, addons
+Tags: seriously simple podcasting, speakers, guests, hosts, podcast, podcasting, ssp, free, add-ons, extensions, addons
 Requires at least: 4.4
 Tested up to: 4.5.3
 Stable tag: 1.0
@@ -64,11 +64,11 @@ If you would like to add speakers to your episodes, but not have them displayed 
 == Changelog ==
 
 = 1.0 =
-* 2016-07-09
+* 2016-06-28
 * Initial release
 
 == Upgrade Notice ==
 
 = 1.0 =
-* 2016-07-09
+* 2016-06-28
 * Initial release
