@@ -180,24 +180,24 @@ class SSP_Speakers {
         );
 
 		// Build taxonomy arguments
-        $args = array(
-					'hierarchical' 					=> true,
-					'label' 								=> $this->plural,
-					'labels' 								=> apply_filters( 'ssp_speakers_taxonomy_labels', $labels ),
-					'meta_box_cb' 					=> null,
-					'public' 								=> true,
-					'query_var' 						=> $this->tax,
-					'rewrite' 							=> array( 
-						'slug' 								=> apply_filters( 'ssp_speakers_taxonomy_slug', $this->tax ) 
-					),
-					'show_admin_column'			=> true,
-					'show_in_nav_menus'			=> true,
-					'show_in_rest' 					=> true,
-					'show_tagcloud'					=> true,
-					'show_ui' 							=> true,
-					'sort' 									=> '',
-					'update_count_callback' => '',
-        );
+		$args = array(
+		  'hierarchical'          => true,
+		  'label'                 => $this->plural,
+		  'labels'                => apply_filters( 'ssp_speakers_taxonomy_labels', $labels ),
+		  'meta_box_cb'           => null,
+		  'public'                => true,
+		  'query_var'             => $this->tax,
+		  'rewrite'               => array( 
+		    'slug'                => apply_filters( 'ssp_speakers_taxonomy_slug', $this->tax ) 
+		  ),
+		  'show_admin_column'     => true,
+		  'show_in_nav_menus'     => true,
+		  'show_in_rest'          => true,
+		  'show_tagcloud'         => true,
+		  'show_ui'               => true,
+		  'sort'                  => '',
+		  'update_count_callback' => '',
+		);
 
         // Allow filtering of taxonomy arguments
         $args = apply_filters( 'ssp_register_taxonomy_args', $args, $this->tax );
