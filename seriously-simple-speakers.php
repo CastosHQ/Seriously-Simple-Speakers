@@ -4,8 +4,8 @@
  * Version: 1.0.1
  * Plugin URI: https://wordpress.org/plugins/seriously-simple-speakers
  * Description: Add speakers to your Seriously Simple Podcasting episodes.
- * Author: Hugh Lashbrooke
- * Author URI: https://hughlashbrooke.com/
+ * Author: Castos
+ * Author URI: https://www.castos.com/
  * Requires at least: 4.4
  * Tested up to: 5.0
  *
