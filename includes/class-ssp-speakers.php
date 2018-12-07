@@ -82,9 +82,6 @@ class SSP_Speakers {
 		$this->file = $file;
 		$this->dir = dirname( $this->file );
 
-		// Setup taxonomy details
-		add_action( 'init', array( $this, 'setup_tax' ) );
-
 		// Register functinos to run on plugin activation
 		register_activation_hook( $this->file, array( $this, 'install' ) );
 
@@ -97,12 +94,6 @@ class SSP_Speakers {
 		// Handle localisation
 		add_action( 'plugins_loaded', array( $this, 'load_localisation' ) );
 	} // End __construct ()
-
-	public function setup_tax () {
-		$this->tax = 'speaker';
-		$this->single = apply_filters( 'ssp_speakers_single_label', __( 'Speaker', 'seriously-simple-speakers' ) );
-		$this->plural = apply_filters( 'ssp_speakers_plural_label', __( 'Speakers', 'seriously-simple-speakers' ) );
-	}
 
 	public function display_speakers ( $meta = array(), $episode_id = 0, $context = '' ) {
 
@@ -155,6 +146,10 @@ class SSP_Speakers {
 	}
 
 	public function register_taxonomy() {
+
+        $this->tax = 'speaker';
+        $this->single = apply_filters( 'ssp_speakers_single_label', __( 'Speaker', 'seriously-simple-speakers' ) );
+        $this->plural = apply_filters( 'ssp_speakers_plural_label', __( 'Speakers', 'seriously-simple-speakers' ) );
 
 		// Create taxonomy labels
 		$labels = array(
