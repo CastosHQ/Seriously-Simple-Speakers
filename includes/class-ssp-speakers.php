@@ -88,7 +88,7 @@ class SSP_Speakers {
 		register_activation_hook( $this->file, array( $this, 'install' ) );
 
 		// Register taxonomy
-		add_action( 'init', array( $this, 'register_taxonomy' ) );
+		add_action( 'init', array( $this, 'register_taxonomy' ), 11 );
 
 		// Add speakers to episode meta
 		add_filter( 'ssp_episode_meta_details', array( $this, 'display_speakers' ), 10, 3 );
