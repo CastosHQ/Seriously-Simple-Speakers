@@ -1,13 +1,13 @@
 <?php
 /*
  * Plugin Name: Seriously Simple Speakers
- * Version: 1.0.1
+ * Version: 1.0.2
  * Plugin URI: https://wordpress.org/plugins/seriously-simple-speakers
  * Description: Add speakers to your Seriously Simple Podcasting episodes.
  * Author: Castos
  * Author URI: https://www.castos.com/
  * Requires at least: 4.4
- * Tested up to: 5.0
+ * Tested up to: 5.2.1
  *
  * Text Domain: seriously-simple-speakers
  * Domain Path: /languages
