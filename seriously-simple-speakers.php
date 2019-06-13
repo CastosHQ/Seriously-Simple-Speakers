@@ -1,13 +1,13 @@
 <?php
 /*
  * Plugin Name: Seriously Simple Speakers
- * Version: 1.0
+ * Version: 1.0.1
  * Plugin URI: https://wordpress.org/plugins/seriously-simple-speakers
  * Description: Add speakers to your Seriously Simple Podcasting episodes.
- * Author: Hugh Lashbrooke
- * Author URI: https://hughlashbrooke.com/
+ * Author: Castos
+ * Author URI: https://www.castos.com/
  * Requires at least: 4.4
- * Tested up to: 4.5.3
+ * Tested up to: 5.0
  *
  * Text Domain: seriously-simple-speakers
  * Domain Path: /languages
@@ -35,7 +35,7 @@ if( is_ssp_active( '1.14' ) ) {
 	 * @return object SSP_Speakers
 	 */
 	function SSP_Speakers () {
-		$instance = SSP_Speakers::instance( __FILE__, '1.0.0' );
+		$instance = SSP_Speakers::instance( __FILE__, '1.0.1' );
 		return $instance;
 	}
 
