@@ -7,7 +7,7 @@
  * Author: Castos
  * Author URI: https://www.castos.com/
  * Requires at least: 4.4
- * Tested up to: 5.2.1
+ * Tested up to: 5.5
  *
  * Text Domain: seriously-simple-speakers
  * Domain Path: /languages
