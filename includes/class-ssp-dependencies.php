@@ -1,4 +1,11 @@
 <?php
+
+namespace SSSpeakers;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * SSP Dependency Checker
  *
@@ -36,5 +43,4 @@ class SSP_Dependencies {
 
 		return false;
 	}
-
 }

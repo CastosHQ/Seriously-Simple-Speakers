@@ -1,8 +1,11 @@
 <?php
 
+namespace SSSpeakers;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
 
 class SSP_Speakers {
 
