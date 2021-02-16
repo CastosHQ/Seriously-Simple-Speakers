@@ -9,6 +9,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class SSP_Speakers {
 
+	const TAXONOMY = 'speaker';
+
 	/**
 	 * The single instance of SSP_Speakers.
 	 * @var    object
@@ -76,10 +78,10 @@ class SSP_Speakers {
 	/**
 	 * Constructor function.
 	 * @access  public
-	 * @return  void
+	 * @return  $this
 	 * @since   1.0.0
 	 */
-	public function __construct( $file = '', $version = '1.0.0' ) {
+	protected function __construct( $file = '', $version = '1.0.0' ) {
 		$this->_version = $version;
 		$this->_token   = 'ssp_speakers';
 
@@ -87,6 +89,16 @@ class SSP_Speakers {
 		$this->file = $file;
 		$this->dir  = dirname( $this->file );
 
+		return $this;
+	} // End __construct ()
+
+
+	/**
+	 * Init function.
+	 * @access  public
+	 * @since   1.0.2
+	 */
+	public function init() {
 		// Register functinos to run on plugin activation
 		register_activation_hook( $this->file, array( $this, 'install' ) );
 
@@ -98,7 +110,10 @@ class SSP_Speakers {
 
 		// Handle localisation
 		add_action( 'plugins_loaded', array( $this, 'load_localisation' ) );
-	} // End __construct ()
+
+		Settings::instance()->init();
+		Speaker_Fields::instance()->init();
+	}
 
 	public function display_speakers( $meta = array(), $episode_id = 0, $context = '' ) {
 
@@ -106,7 +121,7 @@ class SSP_Speakers {
 			return $meta;
 		}
 
-		$speakers = wp_get_post_terms( $episode_id, 'speaker' );
+		$speakers = wp_get_post_terms( $episode_id, self::TAXONOMY );
 
 		// Saving speaker count in a variable as is it used a few times
 		$count = count( $speakers );
@@ -136,7 +151,7 @@ class SSP_Speakers {
 				$speakers_html .= ', ';
 			}
 
-			$speakers_html .= '<a href="' . get_term_link( $speaker->term_id ) . '">' . $speaker->name . '</a>';
+			$speakers_html .= $this->get_speaker_html( $speaker );
 
 		}
 
@@ -150,9 +165,47 @@ class SSP_Speakers {
 		return $meta;
 	}
 
+	/**
+	 * @param \WP_Term $speaker
+	 *
+	 * @return string
+	 */
+	protected function get_speaker_html( $speaker ) {
+		$speakers_display = get_option( 'ss_podcasting_speakers_display' );
+
+		$res = '<a href="' . get_term_link( $speaker->term_id ) . '">';
+
+		if ( in_array( $speakers_display, [ 'image', 'name_image' ] ) ) {
+			$image = get_term_meta( $speaker->term_id, 'ssp_speaker_headshot', true );
+
+			if ( empty( $image ) ) {
+				$email = get_term_meta( $speaker->term_id, 'ssp_speaker_email', true );
+				$image = get_avatar_url( $email );
+
+				/**
+				 * SSP plugin uses wp_kses() function which removes the background attribute if it contains query string
+				 * Lets remove it
+				 * */
+				$image = strtok( $image, '?' );
+			}
+			$res .= sprintf(
+				'<span style="background:url(%s);padding:2px 14px;background-size:cover;margin:0 5px;"></span>',
+				$image
+			);
+		}
+
+		if ( in_array( $speakers_display, [ 'name_image', 'name' ] ) ) {
+			$res .=  $speaker->name;
+		}
+
+		$res .= '</a>';
+
+		return $res;
+	}
+
 	public function register_taxonomy() {
 
-		$this->tax    = 'speaker';
+		$this->tax    = self::TAXONOMY;
 		$this->single = apply_filters( 'ssp_speakers_single_label', __( 'Speaker', 'seriously-simple-speakers' ) );
 		$this->plural = apply_filters( 'ssp_speakers_plural_label', __( 'Speakers', 'seriously-simple-speakers' ) );
 
@@ -222,7 +275,7 @@ class SSP_Speakers {
 			return $speakers;
 		}
 
-		$speaker_terms = wp_get_post_terms( $episode_id, 'speaker' );
+		$speaker_terms = wp_get_post_terms( $episode_id, self::TAXONOMY );
 
 		if ( is_wp_error( $speakers ) || ( is_array( $speaker_terms ) && 0 == count( $speaker_terms ) ) ) {
 			return $speakers;
@@ -254,8 +307,7 @@ class SSP_Speakers {
 	 *
 	 * Ensures only one instance of SSP_Speakers is loaded or can be loaded.
 	 *
-	 * @return Main SSP_Speakers instance
-	 * @see SSP_Speakers()
+	 * @return $this SSP_Speakers instance
 	 * @since 1.0.0
 	 * @static
 	 */
