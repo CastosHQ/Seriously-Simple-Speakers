@@ -69,7 +69,6 @@ class Speaker_Fields {
 	 * @since 1.0.3
 	 */
 	public function add_term_fields( $term ) {
-		$email    = get_term_meta( $term->term_id, 'ssp_speaker_email', true );
 		$headshot = get_term_meta( $term->term_id, 'ssp_speaker_headshot', true );
 
 		echo Renderer::render( 'term-fields', compact( 'email', 'headshot' ) );
@@ -79,12 +78,6 @@ class Speaker_Fields {
 	 * @since 1.0.3
 	 */
 	function save_term_fields( $term_id ) {
-		update_term_meta(
-			$term_id,
-			'ssp_speaker_email',
-			sanitize_text_field( filter_input( INPUT_POST, 'ssp_speaker_email', FILTER_VALIDATE_EMAIL ) )
-		);
-
 		update_term_meta(
 			$term_id,
 			'ssp_speaker_headshot',

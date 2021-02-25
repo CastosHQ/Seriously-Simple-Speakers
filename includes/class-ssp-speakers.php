@@ -90,7 +90,7 @@ class SSP_Speakers {
 		$this->dir  = dirname( $this->file );
 
 		return $this;
-	} // End __construct ()
+	}
 
 
 	/**
@@ -179,14 +179,7 @@ class SSP_Speakers {
 			$image = get_term_meta( $speaker->term_id, 'ssp_speaker_headshot', true );
 
 			if ( empty( $image ) ) {
-				$email = get_term_meta( $speaker->term_id, 'ssp_speaker_email', true );
-				$image = get_avatar_url( $email );
-
-				/**
-				 * SSP plugin uses wp_kses() function which removes the background attribute if it contains query string
-				 * Lets remove it
-				 * */
-				$image = strtok( $image, '?' );
+				$image = SSS_PLUGIN_URL . '/assets/default.png';
 			}
 			$res .= sprintf(
 				'<span style="background:url(%s);padding:2px 14px;background-size:cover;margin:0 5px;"></span>',

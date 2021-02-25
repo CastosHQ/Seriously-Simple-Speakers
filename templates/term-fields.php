@@ -2,20 +2,10 @@
 /**
  * @since 1.0.3
  *
- * @var string $email
  * @var string $headshot
  * */
 ?>
 
-<tr class="form-field">
-    <th>
-        <label for="ssp_speaker_email">Email</label>
-    </th>
-    <td>
-        <input name="ssp_speaker_email" id="ssp_speaker_email" type="email" value="<?php echo esc_attr( $email ) ?>"/>
-        <p class="description">Speaker email for the gravatar image.</p>
-    </td>
-</tr>
 <tr class="form-field">
     <th>
         <label for="ssp_headshot_url">Headshot</label>
