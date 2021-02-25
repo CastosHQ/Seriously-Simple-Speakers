@@ -17,27 +17,15 @@
  * @since 1.0.0
  */
 
+namespace SSSpeakers;
+
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if ( ! function_exists( 'is_ssp_active' ) ) {
-	require_once( 'ssp-includes/ssp-functions.php' );
-}
+define( 'SSS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+define( 'SSS_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 
-if( is_ssp_active( '1.14' ) ) {
+require_once __DIR__ . '/autoloader.php';
 
-	// Load plugin class files
-	require_once( 'includes/class-ssp-speakers.php' );
-
-	/**
-	 * Returns the main instance of SSP_Speakers to prevent the need to use globals.
-	 *
-	 * @since  1.0.0
-	 * @return object SSP_Speakers
-	 */
-	function SSP_Speakers () {
-		$instance = SSP_Speakers::instance( __FILE__, '1.0.1' );
-		return $instance;
-	}
-
-	SSP_Speakers();
+if( SSP_Dependencies::instance()->ssp_active_check( '1.14' ) ) {
+	SSP_Speakers::instance( __FILE__, '1.0.2' )->init();
 }
