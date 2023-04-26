@@ -246,7 +246,7 @@ class SSP_Speakers {
 	 */
 	public function load_localization() {
 		load_plugin_textdomain( 'seriously-simple-speakers', false, basename( $this->dir ) . '/languages/' );
-	} // End load_localisation ()
+	}
 
 	/**
 	 * Main SSP_Speakers Instance

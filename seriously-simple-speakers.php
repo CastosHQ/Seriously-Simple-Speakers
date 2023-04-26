@@ -17,16 +17,14 @@
  * @since 1.0.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit;
-
-if ( ! function_exists( 'is_ssp_active' ) ) {
-	require_once( 'ssp-includes/ssp-functions.php' );
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
-if( is_ssp_active( '1.14' ) ) {
+define( 'SSP_SPKRS_VERSION', '1.0.2' );
 
-	// Load plugin class files
-	require_once( 'includes/class-ssp-speakers.php' );
+require_once( 'php/ssp-functions.php' );
 
-	SSP_Speakers();
+if ( is_ssp_active( '1.14' ) ) {
+	ssp_speakers( __FILE__, SSP_SPKRS_VERSION );
 }
