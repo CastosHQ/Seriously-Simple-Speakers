@@ -1,4 +1,6 @@
 <?php
+namespace SSSpeakers;
+
 /**
  * SSP Dependency Checker
  *
@@ -10,7 +12,10 @@ class SSP_Dependencies {
 
 	public static function init() {
 
-		self::$active_plugins = (array) get_option( 'active_plugins', array() );
+		$active_plugins       = (array) get_option( 'active_plugins', array() );
+
+		// Make it case-insensitive to support SSP loaded from the repository
+		self::$active_plugins = array_map( 'strtolower', $active_plugins );
 
 		if ( is_multisite() ) {
 			self::$active_plugins = array_merge( self::$active_plugins, get_site_option( 'active_sitewide_plugins', array() ) );

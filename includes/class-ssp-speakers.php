@@ -1,5 +1,7 @@
 <?php
 
+namespace SSSpeakers;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -87,15 +89,15 @@ class SSP_Speakers {
 		// Register functinos to run on plugin activation
 		register_activation_hook( $this->file, array( $this, 'install' ) );
 
-		// Register taxonomy
-		add_action( 'init', array( $this, 'register_taxonomy' ), 11 );
+		// Register taxonomy ( use 12 to make sure it is fired after podcast CPT is registered on 11 )
+		add_action( 'init', array( $this, 'register_taxonomy' ), 12 );
 
 		// Add speakers to episode meta
 		add_filter( 'ssp_episode_meta_details', array( $this, 'display_speakers' ), 10, 3 );
 
 		// Handle localisation
-		add_action( 'plugins_loaded', array( $this, 'load_localisation' ) );
-	} // End __construct ()
+		add_action( 'plugins_loaded', array( $this, 'load_localization' ) );
+	}
 
 	public function display_speakers( $meta = array(), $episode_id = 0, $context = '' ) {
 
@@ -242,7 +244,7 @@ class SSP_Speakers {
 	 * @return  void
 	 * @since   1.0.0
 	 */
-	public function load_localisation() {
+	public function load_localization() {
 		load_plugin_textdomain( 'seriously-simple-speakers', false, basename( $this->dir ) . '/languages/' );
 	} // End load_localisation ()
 
@@ -251,7 +253,7 @@ class SSP_Speakers {
 	 *
 	 * Ensures only one instance of SSP_Speakers is loaded or can be loaded.
 	 *
-	 * @return Main SSP_Speakers instance
+	 * @return self SSP_Speakers instance
 	 * @see SSP_Speakers()
 	 * @since 1.0.0
 	 * @static
@@ -262,25 +264,8 @@ class SSP_Speakers {
 		}
 
 		return self::$_instance;
-	} // End instance ()
+	}
 
-	/**
-	 * Cloning is forbidden.
-	 *
-	 * @since 1.0.0
-	 */
-	public function __clone() {
-		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?' ), $this->_version );
-	} // End __clone ()
-
-	/**
-	 * Unserializing instances of this class is forbidden.
-	 *
-	 * @since 1.0.0
-	 */
-	public function __wakeup() {
-		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?' ), $this->_version );
-	} // End __wakeup ()
 
 	/**
 	 * Installation. Runs on activation.
@@ -294,7 +279,7 @@ class SSP_Speakers {
 		// Regsiter taxonomy and flush rewrite rules on plugin activation
 		$this->register_taxonomy();
 		flush_rewrite_rules( true );
-	} // End install ()
+	}
 
 	/**
 	 * Log the plugin version number.
@@ -304,6 +289,6 @@ class SSP_Speakers {
 	 */
 	private function _log_version_number() {
 		update_option( $this->_token . '_version', $this->_version );
-	} // End _log_version_number ()
+	}
 
 }
