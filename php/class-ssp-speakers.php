@@ -151,7 +151,7 @@ class SSP_Speakers {
 
 	public function register_taxonomy() {
 
-		$this->tax    = 'speaker';
+		$this->tax    = apply_filters( 'ssp_speakers_tax', 'speaker' );
 		$this->single = apply_filters( 'ssp_speakers_single_label', __( 'Speaker', 'seriously-simple-speakers' ) );
 		$this->plural = apply_filters( 'ssp_speakers_plural_label', __( 'Speakers', 'seriously-simple-speakers' ) );
 
