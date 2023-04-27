@@ -1,9 +1,9 @@
 === Seriously Simple Speakers ===
-Contributors: PodcastMotor, psykro, hlashbrooke
+Contributors: PodcastMotor, psykro, hlashbrooke, zahardoc
 Tags: seriously simple podcasting, speakers, guests, hosts, podcast, podcasting, ssp, free, add-ons, extensions, addons
 Requires at least: 4.4
-Tested up to: 5.5
-Stable tag: 1.0.2
+Tested up to: 6.2
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -62,6 +62,15 @@ This plugin has filters that allow you do this easily by adding the following sn
 If you would like to add speakers to your episodes, but not have them displayed in the standard episode details location then simply add this code to your theme's functions.php file (or a functionality plugin): `add_filter( 'ssp_speakers_display', '__return_false' );`
 
 == Changelog ==
+
+= 1.1.0 =
+* 2023-04-27
+* [UPDATE] Possibility to change the speakers taxonomy slug
+* [UPDATE] Updated supported WordPress version
+* [UPDATE] Code refactoring
+* [FIX] Compatibility with SSP downloaded from the repository
+* [FIX] Fixed too early taxonomy registration
+
 
 = 1.0.2 =
 * 2019-06-13

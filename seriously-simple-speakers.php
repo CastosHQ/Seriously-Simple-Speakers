@@ -1,7 +1,7 @@
 <?php
 /*
  * Plugin Name: Seriously Simple Speakers
- * Version: 1.1.0-beta.2
+ * Version: 1.1.0
  * Plugin URI: https://wordpress.org/plugins/seriously-simple-speakers
  * Description: Add speakers to your Seriously Simple Podcasting episodes.
  * Author: Castos
@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SSP_SPKRS_VERSION', '1.1.0-beta.2' );
+define( 'SSP_SPKRS_VERSION', '1.1.0' );
 
 require_once( 'php/ssp-functions.php' );
 
