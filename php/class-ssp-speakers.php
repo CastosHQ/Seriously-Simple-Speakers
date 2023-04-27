@@ -151,7 +151,7 @@ class SSP_Speakers {
 
 	public function register_taxonomy() {
 
-		$this->tax    = apply_filters( 'ssp_speakers_tax', 'speaker' );
+		$this->tax    = $this->get_tax_name();
 		$this->single = apply_filters( 'ssp_speakers_single_label', __( 'Speaker', 'seriously-simple-speakers' ) );
 		$this->plural = apply_filters( 'ssp_speakers_plural_label', __( 'Speakers', 'seriously-simple-speakers' ) );
 
@@ -208,6 +208,13 @@ class SSP_Speakers {
 		register_taxonomy( $this->tax, $podcast_post_types, $args );
 	}
 
+	/**
+	 * @return string
+	 */
+	public function get_tax_name() {
+		return apply_filters( 'ssp_speakers_tax', 'speaker' );
+	}
+
 	public function get_speakers( $episode_id = 0 ) {
 
 		$speakers = array();
@@ -221,7 +228,7 @@ class SSP_Speakers {
 			return $speakers;
 		}
 
-		$speaker_terms = wp_get_post_terms( $episode_id, 'speaker' );
+		$speaker_terms = wp_get_post_terms( $episode_id, $this->get_tax_name() );
 
 		if ( is_wp_error( $speakers ) || ( is_array( $speaker_terms ) && 0 == count( $speaker_terms ) ) ) {
 			return $speakers;
