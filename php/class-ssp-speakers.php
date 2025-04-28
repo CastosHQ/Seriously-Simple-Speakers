@@ -97,11 +97,67 @@ class SSP_Speakers {
 
 		// Handle localisation
 		add_action( 'plugins_loaded', array( $this, 'load_localization' ) );
+
+		// Add settings to player settings
+		add_filter( 'ssp_config', array( $this, 'add_speakers_enabled_setting' ), 10, 2 );
+	}
+
+	/**
+	 * Inserts the speakers enabled setting into the player settings.
+	 *
+	 * @param array $config
+	 * @param string $name
+	 *
+	 * @return array
+	 */
+	public function add_speakers_enabled_setting( array $config, string $name ): array {
+		if ( 'settings/player' !== $name || ! ssp_get_option( 'player_meta_data_enabled' ) ) {
+			return $config;
+		}
+
+		$config['fields'] = $this->insert_after_value(
+			$config['fields'],
+			array(
+				'id'          => 'speakers_enabled',
+				'label'       => __( 'Enable Speakers', 'seriously-simple-speakers' ),
+				'description' => __( 'Turn on to display the speakers info', 'seriously-simple-speakers' ),
+				'type'        => 'checkbox',
+				'default'     => true,
+			),
+			array( 'id' => 'player_meta_data_enabled' )
+		);
+
+		return $config;
+	}
+
+	/**
+	 * Inserts an item after a specific value in an array of associative arrays.
+	 *
+	 * @param array  $array   The original array.
+	 * @param array  $insert  The item to insert.
+	 * @param array  $where   Where to insert the item. Key and value to match.
+	 *
+	 * @return array Modified array with the item inserted, or original array if match not found.
+	 */
+	public function insert_after_value( array $array, array $insert, array $where ): array {
+		$result    = [];
+		$where_key = key( $where );
+		$where_val = current( $where );
+
+		foreach ( $array as $item ) {
+			$result[] = $item;
+
+			if ( isset( $item[ $where_key ] ) && $item[ $where_key ] === $where_val ) {
+				$result[] = $insert;
+			}
+		}
+
+		return $result;
 	}
 
 	public function display_speakers( $meta = array(), $episode_id = 0, $context = '' ) {
 
-		if ( ! $episode_id ) {
+		if ( ! $episode_id || ! ssp_get_option( 'speakers_enabled' ) ) {
 			return $meta;
 		}
 
